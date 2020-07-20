@@ -46,9 +46,7 @@ class AccountSelectionBox extends StatelessWidget {
                   size: 20,
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20),
               Text(
                 title,
                 style: TextStyle(
@@ -57,9 +55,7 @@ class AccountSelectionBox extends StatelessWidget {
                   color: Color(0x3404071D),
                 ),
               ),
-              SizedBox(
-                height: 40,
-              ),
+              SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
