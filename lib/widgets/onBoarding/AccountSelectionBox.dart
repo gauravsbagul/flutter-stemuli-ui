@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AccountSelectionBox extends StatelessWidget {
-  String title;
-  IconData icon;
-  Color color;
-  Color boxColor;
+  final String title;
+  final IconData icon;
+  final Color color;
+  final Color boxColor;
 
   AccountSelectionBox({
     this.title,
@@ -60,20 +60,38 @@ class AccountSelectionBox extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Sign In'),
+                Text(
+                  'Sign In',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                      color: Color(0x34151612)),
+                ),
                 Container(
-                  height: 29,
-                  width: 29,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(20),
+                      Radius.circular(40),
                     ),
                     color: Colors.blueAccent,
+                    boxShadow: [
+                      new BoxShadow(
+                        color: Colors.blue,
+                        blurRadius: 9.0,
+                        offset: Offset(2, 4),
+                        spreadRadius: 0.3,
+                      ),
+                    ],
                   ),
-                  child: Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                    size: 20,
+                  child: IconButton(
+                    enableFeedback: true,
+                    alignment: Alignment.center,
+                    icon: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                    onPressed: () => print('clicked'),
                   ),
                 ),
               ],

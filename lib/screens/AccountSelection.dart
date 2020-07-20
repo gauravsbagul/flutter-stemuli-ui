@@ -70,6 +70,40 @@ class AccountSelection extends StatelessWidget {
                             ),
                           ],
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AccountSelectionBox(
+                              title: 'Partner',
+                              icon: Icons.settings,
+                              boxColor: Colors.green[100],
+                              color: Colors.green,
+                            ),
+                            SizedBox(width: 20),
+                            AccountSelectionBox(
+                              title: 'Volunteer',
+                              icon: Icons.people_outline,
+                              boxColor: Colors.yellow[100],
+                              color: Colors.yellow,
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 40),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          child: OutlineButton(
+                            onPressed: () => print('helloooo'),
+                            child: Text('Create an account',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.grey,
+                                )),
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(25.0),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
