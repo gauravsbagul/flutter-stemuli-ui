@@ -16,87 +16,87 @@ class AccountSelectionBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        margin: EdgeInsets.only(top: 20),
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(
-            Radius.circular(24),
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => print('GestureDetector tapped'),
+        child: Container(
+          margin: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(24),
+            ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 29,
-              width: 29,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-                color: boxColor,
-              ),
-              child: Icon(
-                icon,
-                color: color,
-                size: 20,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0x3404071D),
-              ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Sign In',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15,
-                      color: Color(0x34151612)),
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(40),
-                    ),
-                    color: Colors.blueAccent,
-                    boxShadow: [
-                      new BoxShadow(
-                        color: Colors.blue,
-                        blurRadius: 9.0,
-                        offset: Offset(2, 4),
-                        spreadRadius: 0.3,
-                      ),
-                    ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 29,
+                width: 29,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
                   ),
-                  child: IconButton(
-                    enableFeedback: true,
+                  color: boxColor,
+                ),
+                child: Icon(
+                  icon,
+                  color: color,
+                  size: 20,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0x3404071D),
+                ),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Sign In',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15,
+                        color: Color(0x34151612)),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(5),
                     alignment: Alignment.center,
-                    icon: Icon(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(40),
+                      ),
+                      color: Colors.blue[700],
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Colors.blue[300],
+                          blurRadius: 6.0,
+                          offset: Offset(0, 2),
+                          spreadRadius: 0.3,
+                        ),
+                      ],
+                    ),
+                    child: Icon(
                       Icons.arrow_forward,
                       color: Colors.white,
-                      size: 30,
+                      size: 20,
                     ),
-                    onPressed: () => print('clicked'),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
