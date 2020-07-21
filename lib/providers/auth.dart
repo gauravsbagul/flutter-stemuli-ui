@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 
+import 'package:STEMuli/actions/tokenDecoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter/material.dart';
@@ -11,8 +12,8 @@ const String url =
 
 class Auth with ChangeNotifier {
   String _token;
-  DateTime _expiryDate;
-  String _userId;
+  dynamic _expiryDate;
+  Map<String, dynamic> _userObject;
 
   bool get isAuth {
     return token != null;
@@ -25,10 +26,6 @@ class Auth with ChangeNotifier {
       return _token;
     }
     return null;
-  }
-
-  String get userId {
-    return _userId;
   }
 
   Future<dynamic> authenticateUser(
@@ -46,50 +43,48 @@ class Auth with ChangeNotifier {
         },
       );
       final responseData = await json.decode(response.body);
-      print('RESPONSEDATA: $responseData');
+
       if (responseData['error'] != null) {
         throw responseData['error']['message'];
       }
-      print('RESPONSEDATA[token]: ${responseData['token']}');
+
       _token = responseData['token'];
 
       notifyListeners();
 
-      // final prefs = await SharedPreferences.getInstance();
-      // final userToken = json.encode({
-      //   'token': _token,
-      // });
+      final prefs = await SharedPreferences.getInstance();
 
-      JsonEncoder encoder = new JsonEncoder.withIndent('  ');
-      String prettyprint = encoder.convert(json.decode(response.body));
-      print('PRETTYPRINT: $prettyprint');
+      prefs.setString('token', _token);
+      // JsonEncoder encoder = new JsonEncoder.withIndent('  ');
+      // String prettyprint = encoder.convert(json.decode(response.body));
+
       final res = {'error': false, 'response': _token};
-      print('RES: $res');
+
       return res;
     } catch (error) {
       print('ERROR: $error');
       final res = {'error': true, 'response': error};
-      print('RES: $res');
+
       return res;
     }
   }
 
   Future<bool> tyrAutoLogin() async {
     final prefs = await SharedPreferences.getInstance();
-    if (!prefs.containsKey('userToken')) {
+
+    if (!prefs.containsKey('token')) {
       return false;
     }
-    final extractedUserToken =
-        json.decode(prefs.getString('userToken')) as Map<String, Object>;
+    String userTokenValue = prefs.getString('token');
 
-    final expiryDate = DateTime.parse(extractedUserToken['expiryDate']);
-    print('EXPIRYDATE: $expiryDate');
-    if (expiryDate.isBefore(DateTime.now())) {
-      return false;
-    }
+    final Map<String, dynamic> tokenResult =
+        parseJwtPayLoad(userTokenValue.split(' ')[1]);
+    print('TOKENRESULT: $tokenResult');
 
-    _token = extractedUserToken['token'];
-    print('_TOKEN: $_token');
+    _token = userTokenValue;
+    _expiryDate = tokenResult['exp'];
+    _userObject = tokenResult;
+
     notifyListeners();
     return true;
   }

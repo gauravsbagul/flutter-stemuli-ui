@@ -5,6 +5,7 @@ import 'providers/auth.dart';
 import 'screens/AccountSelection.dart';
 import 'screens/Login.dart';
 import 'screens/dashboard.dart';
+import 'screens/splash.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,9 +29,9 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: AccountSelection(),
+          home: Splash(),
           routes: {
-            // AccountSelection.routeName: (ctx) => AccountSelection(),
+            AccountSelection.routeName: (ctx) => AccountSelection(),
             Login.routeName: (ctx) => Login(),
             Dashboard.routeName: (ctx) => Dashboard()
           },
