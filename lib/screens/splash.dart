@@ -21,13 +21,17 @@ class _SplashState extends State<Splash> {
 
   void navigate() async {
     print('NAVIGATE:');
-    await new Future.delayed(const Duration(seconds: 3));
-    final isLoggedIn = Provider.of<Auth>(context, listen: false).tyrAutoLogin();
-    print('isLoggedIn: $isLoggedIn');
-    if (isLoggedIn != null) {
+    var isLoggedIn =
+        await Provider.of<Auth>(context, listen: false).tyrAutoLogin();
+
+    print('isLoggedIn: ${isLoggedIn['isExpire']}');
+    new Future.delayed(const Duration(seconds: 3));
+    if (isLoggedIn['isExpire']) {
+      print('ISLOGGEDIN[ISEXPIRE]: ${isLoggedIn['isExpire']}');
       Navigator.of(context).pushReplacementNamed(Dashboard.routeName);
+    } else {
+      Navigator.of(context).pushReplacementNamed(AccountSelection.routeName);
     }
-    Navigator.of(context).pushReplacementNamed(AccountSelection.routeName);
   }
 
   @override

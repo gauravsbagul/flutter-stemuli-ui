@@ -69,23 +69,42 @@ class Auth with ChangeNotifier {
     }
   }
 
-  Future<bool> tyrAutoLogin() async {
-    final prefs = await SharedPreferences.getInstance();
+  Future tyrAutoLogin() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      var result = new Map();
+      if (!prefs.containsKey('token')) {
+        print('!PREFS.CONTAINSKEY( ): ${!prefs.containsKey('token')}');
+        result = {'isExpire': false};
+        return result;
+      }
+      String userTokenValue = prefs.getString('token');
 
-    if (!prefs.containsKey('token')) {
-      return false;
+      final tokenResult = parseJwtPayLoad(userTokenValue.split(' ')[1]);
+
+      _token = userTokenValue;
+      _expiryDate = tokenResult['exp'];
+      _userObject = tokenResult;
+
+      var time = DateTime.fromMillisecondsSinceEpoch(tokenResult['exp'] * 1000,
+          isUtc: true);
+
+      notifyListeners();
+      result = {'isExpire': time.isAfter(DateTime.now())};
+      return result;
+    } catch (error) {
+      print('ERROR: $error');
+      final result = {'isExpire': false};
+      return result;
     }
-    String userTokenValue = prefs.getString('token');
+  }
 
-    final Map<String, dynamic> tokenResult =
-        parseJwtPayLoad(userTokenValue.split(' ')[1]);
-    print('TOKENRESULT: $tokenResult');
-
-    _token = userTokenValue;
-    _expiryDate = tokenResult['exp'];
-    _userObject = tokenResult;
+  Future<void> logout() async {
+    _token = null;
+    _expiryDate = null;
 
     notifyListeners();
-    return true;
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
   }
 }

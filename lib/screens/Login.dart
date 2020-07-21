@@ -44,7 +44,6 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final title = ModalRoute.of(context).settings.arguments;
-    print('TITLE: $title');
     return OnBoardingContainer(
       title: 'Sign In',
       child: Column(
@@ -87,7 +86,7 @@ class _LoginState extends State<Login> {
                 hintText: 'Email',
                 prefixIcon: Icon(
                   Icons.email,
-                  color: Colors.blue,
+                  color: Color(0xff0d47a1),
                 ),
               ),
               onChanged: (value) {
@@ -114,7 +113,7 @@ class _LoginState extends State<Login> {
                 hintText: 'Password',
                 prefixIcon: Icon(
                   Icons.vpn_key,
-                  color: Colors.blue,
+                  color: Color(0xff0d47a1),
                 ),
               ),
               onChanged: (value) {
@@ -132,7 +131,7 @@ class _LoginState extends State<Login> {
               child: Ink(
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Colors.blue[900],
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Row(
@@ -151,7 +150,7 @@ class _LoginState extends State<Login> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.blue[300],
+                        color: Colors.blue[800].withOpacity(0.5),
                         borderRadius: BorderRadius.circular(30),
                       ),
                       padding: EdgeInsets.all(5),
