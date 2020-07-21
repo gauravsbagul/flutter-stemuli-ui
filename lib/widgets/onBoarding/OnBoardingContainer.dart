@@ -48,7 +48,7 @@ class _OnBoardingContainerState extends State<OnBoardingContainer> {
                         topLeft: Radius.circular(32.0),
                         topRight: Radius.circular(32.0),
                       ),
-                      color: Color(0xF2DDF3F3),
+                      color: Color(0xF2DDF3f5),
                     ),
                     child: Container(
                       margin: EdgeInsets.only(top: 32),
