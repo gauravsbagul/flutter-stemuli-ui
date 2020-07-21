@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:STEMuli/widgets/onBoarding/AccountSelectionBox.dart';
 
 class AccountSelection extends StatelessWidget {
+  static const routeName = '/account-selection';
   @override
   Widget build(BuildContext context) {
     return OnBoardingContainer(

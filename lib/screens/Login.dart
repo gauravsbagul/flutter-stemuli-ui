@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:STEMuli/widgets/onBoarding/OnBoardingContainer.dart';
 
 class Login extends StatefulWidget {
+  static const routeName = '/login';
   @override
   _LoginState createState() => _LoginState();
 }
@@ -10,6 +11,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
+    final title = ModalRoute.of(context).settings.arguments;
+    print('TITLE: $title');
     return OnBoardingContainer(
       title: 'Sign In',
       child: Column(
@@ -26,7 +29,7 @@ class _LoginState extends State<Login> {
           Container(
             margin: EdgeInsets.only(top: 23),
             child: Text(
-              'Sign in as a',
+              'Sign in as a $title',
               style: TextStyle(
                 color: Color(0x7A424B4B),
                 fontWeight: FontWeight.normal,
@@ -46,8 +49,7 @@ class _LoginState extends State<Login> {
               ),
             ),
             child: TextField(
-              autocorrect: false,
-              autofocus: true,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Email',
@@ -80,11 +82,46 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-          RaisedButton(
-            onPressed: () {
-              print('login');
-            },
-            child: Text('login'),
+          SizedBox(height: 30),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () => print('hhvkyuyutvuy'),
+              child: Ink(
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      width: 20,
+                    ),
+                    Text(
+                      'SIGN IN',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue[300],
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: EdgeInsets.all(5),
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           )
         ],
       ),

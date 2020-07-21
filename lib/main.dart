@@ -18,7 +18,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Login(),
+      home: AccountSelection(),
+      routes: {
+        // AccountSelection.routeName: (ctx) => AccountSelection(),
+        Login.routeName: (ctx) => Login(),
+      },
     );
   }
 }

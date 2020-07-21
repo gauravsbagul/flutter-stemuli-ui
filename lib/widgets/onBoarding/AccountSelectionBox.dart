@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../screens/Login.dart';
+
 class AccountSelectionBox extends StatelessWidget {
   final String title;
   final IconData icon;
@@ -16,9 +18,9 @@ class AccountSelectionBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: () => print('GestureDetector tapped'),
+      child: InkWell(
+        onTap: () =>
+            Navigator.of(context).pushNamed(Login.routeName, arguments: title),
         child: Container(
           margin: EdgeInsets.only(top: 20),
           padding: EdgeInsets.all(20),
