@@ -2,28 +2,26 @@ import 'dart:convert';
 import 'dart:async';
 import 'dart:io';
 
-import 'package:provider/provider.dart';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 const String url = 'https://stemuli-backend-sandbox.azurewebsites.net/api/';
 
-class Dashboard with ChangeNotifier {
-  dynamic _dashboardData;
+class Profile with ChangeNotifier {
+  dynamic _userProfile;
   String token;
-  Dashboard(
+  Profile(
     this.token,
-    this._dashboardData,
+    this._userProfile,
   );
 
-  dynamic get dashboardData {
-    return _dashboardData;
+  Map<String, Object> get userProfile {
+    return _userProfile;
   }
 
-  Future<dynamic> getDashboard() async {
+  Future<dynamic> getUserProfile() async {
     try {
-      final response = await http.get(url + 'dashboard',
+      final response = await http.get(url + 'profile',
           headers: {HttpHeaders.authorizationHeader: token});
       final responseData = await json.decode(response.body);
 
@@ -31,11 +29,11 @@ class Dashboard with ChangeNotifier {
         throw responseData['error']['message'];
       }
 
-      _dashboardData = responseData;
+      _userProfile = responseData;
 
       notifyListeners();
 
-      final res = {'error': false, 'response': _dashboardData};
+      final res = {'error': false, 'response': _userProfile};
 
       return res;
     } catch (error) {

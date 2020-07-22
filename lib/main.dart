@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/auth.dart';
+import 'providers/profile.dart';
 import 'screens/AccountSelection.dart';
 import 'screens/Login.dart';
 import 'screens/DashboardScreen.dart';
@@ -26,6 +27,12 @@ class MyApp extends StatelessWidget {
           update: (ctx, auth, prevDashboard) => Dashboard(
             auth.token,
             prevDashboard,
+          ),
+        ),
+        ChangeNotifierProxyProvider<Auth, Profile>(
+          update: (ctx, auth, prevProfile) => Profile(
+            auth.token,
+            prevProfile,
           ),
         ),
       ],
