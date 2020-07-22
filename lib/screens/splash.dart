@@ -1,4 +1,4 @@
-import 'package:STEMuli/screens/dashboard.dart';
+import 'package:STEMuli/screens/DashboardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:STEMuli/providers/auth.dart';
@@ -28,7 +28,7 @@ class _SplashState extends State<Splash> {
     new Future.delayed(const Duration(seconds: 5));
     if (isLoggedIn['isExpire']) {
       print('ISLOGGEDIN[ISEXPIRE]: ${isLoggedIn['isExpire']}');
-      Navigator.of(context).pushReplacementNamed(Dashboard.routeName);
+      Navigator.of(context).pushReplacementNamed(DashboardScreen.routeName);
     } else {
       Navigator.of(context).pushReplacementNamed(AccountSelection.routeName);
     }

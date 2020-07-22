@@ -1,5 +1,5 @@
 import 'package:STEMuli/providers/auth.dart';
-import 'package:STEMuli/screens/dashboard.dart';
+import 'package:STEMuli/screens/DashboardScreen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:STEMuli/widgets/onBoarding/OnBoardingContainer.dart';
@@ -38,7 +38,7 @@ class _LoginState extends State<Login> {
       });
       Navigator.pushNamedAndRemoveUntil(
         context,
-        Dashboard.routeName,
+        DashboardScreen.routeName,
         ModalRoute.withName('/'),
       );
     } else {

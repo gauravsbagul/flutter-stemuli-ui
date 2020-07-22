@@ -83,14 +83,13 @@ class Auth with ChangeNotifier {
       final tokenResult = parseJwtPayLoad(userTokenValue.split(' ')[1]);
 
       _token = userTokenValue;
-      _expiryDate = tokenResult['exp'];
+      _expiryDate = DateTime.fromMillisecondsSinceEpoch(
+          tokenResult['exp'] * 1000,
+          isUtc: true);
       _userObject = tokenResult;
 
-      var time = DateTime.fromMillisecondsSinceEpoch(tokenResult['exp'] * 1000,
-          isUtc: true);
-
       notifyListeners();
-      result = {'isExpire': time.isAfter(DateTime.now())};
+      result = {'isExpire': _expiryDate.isAfter(DateTime.now())};
       return result;
     } catch (error) {
       print('ERROR: $error');

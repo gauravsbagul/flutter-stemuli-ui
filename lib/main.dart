@@ -1,10 +1,11 @@
+import 'package:STEMuli/providers/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/auth.dart';
 import 'screens/AccountSelection.dart';
 import 'screens/Login.dart';
-import 'screens/dashboard.dart';
+import 'screens/DashboardScreen.dart';
 import 'screens/splash.dart';
 import 'style/color.dart';
 
@@ -20,6 +21,12 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => Auth(),
+        ),
+        ChangeNotifierProxyProvider<Auth, Dashboard>(
+          update: (ctx, auth, prevDashboard) => Dashboard(
+            auth.token,
+            prevDashboard,
+          ),
         ),
       ],
       child: Consumer<Auth>(
@@ -39,7 +46,7 @@ class MyApp extends StatelessWidget {
           routes: {
             AccountSelection.routeName: (ctx) => AccountSelection(),
             Login.routeName: (ctx) => Login(),
-            Dashboard.routeName: (ctx) => Dashboard()
+            DashboardScreen.routeName: (ctx) => DashboardScreen(),
           },
         ),
       ),
