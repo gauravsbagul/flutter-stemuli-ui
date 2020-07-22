@@ -25,7 +25,7 @@ class _SplashState extends State<Splash> {
         await Provider.of<Auth>(context, listen: false).tyrAutoLogin();
 
     print('isLoggedIn: ${isLoggedIn['isExpire']}');
-    new Future.delayed(const Duration(seconds: 3));
+    new Future.delayed(const Duration(seconds: 5));
     if (isLoggedIn['isExpire']) {
       print('ISLOGGEDIN[ISEXPIRE]: ${isLoggedIn['isExpire']}');
       Navigator.of(context).pushReplacementNamed(Dashboard.routeName);

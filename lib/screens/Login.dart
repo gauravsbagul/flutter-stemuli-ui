@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:STEMuli/widgets/onBoarding/OnBoardingContainer.dart';
 import 'package:provider/provider.dart';
 
+import 'AccountSelection.dart';
+
 class Login extends StatefulWidget {
   static const routeName = '/login';
   @override
@@ -15,6 +17,7 @@ class _LoginState extends State<Login> {
   String email = '';
   String password = '';
   bool loader = false;
+  bool _obscureText = false;
 
   void _login() async {
     if (email.trim().isEmpty || password.trim().isEmpty) {
@@ -33,12 +36,22 @@ class _LoginState extends State<Login> {
       setState(() {
         loader = false;
       });
-      Navigator.of(context).pushReplacementNamed(Dashboard.routeName);
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        Dashboard.routeName,
+        ModalRoute.withName('/'),
+      );
     } else {
       setState(() {
         loader = false;
       });
     }
+  }
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
   }
 
   @override
@@ -86,7 +99,7 @@ class _LoginState extends State<Login> {
                 hintText: 'Email',
                 prefixIcon: Icon(
                   Icons.email,
-                  color: Color(0xff0d47a1),
+                  color: Color(0xff3F51B5),
                 ),
               ),
               onChanged: (value) {
@@ -108,12 +121,18 @@ class _LoginState extends State<Login> {
               ),
             ),
             child: TextField(
+              obscureText: _obscureText,
               decoration: const InputDecoration(
+                suffixIconConstraints: BoxConstraints(
+                  minHeight: 32,
+                  minWidth: 32,
+                ),
+                suffixText: "Show",
                 border: InputBorder.none,
                 hintText: 'Password',
                 prefixIcon: Icon(
                   Icons.vpn_key,
-                  color: Color(0xff0d47a1),
+                  color: Color(0xff3F51B5),
                 ),
               ),
               onChanged: (value) {
@@ -131,7 +150,7 @@ class _LoginState extends State<Login> {
               child: Ink(
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Colors.blue[900],
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Row(

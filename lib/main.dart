@@ -6,6 +6,7 @@ import 'screens/AccountSelection.dart';
 import 'screens/Login.dart';
 import 'screens/dashboard.dart';
 import 'screens/splash.dart';
+import 'style/color.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,8 +27,13 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'STEMuli',
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            accentColor: Colors.blueAccent,
             visualDensity: VisualDensity.adaptivePlatformDensity,
+            primaryColor: HexColor('#3F51B5'),
+            fontFamily: 'Muli',
+            iconTheme: new IconThemeData(
+              color: HexColor('#3F51B5'),
+            ),
           ),
           home: Splash(),
           routes: {

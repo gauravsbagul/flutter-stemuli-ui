@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:STEMuli/style/color.dart';
+
 class OnBoardingContainer extends StatefulWidget {
   final Widget child;
   final String title;
@@ -48,7 +50,7 @@ class _OnBoardingContainerState extends State<OnBoardingContainer> {
                         topLeft: Radius.circular(32.0),
                         topRight: Radius.circular(32.0),
                       ),
-                      color: Color(0xF2DDF3f5),
+                      color: HexColor('#F3F5F9'),
                     ),
                     child: Container(
                       margin: EdgeInsets.only(top: 32),

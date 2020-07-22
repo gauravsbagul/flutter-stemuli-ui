@@ -20,7 +20,7 @@ class AccountSelectionBox extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () =>
-            Navigator.of(context).pushNamed(Login.routeName, arguments: title),
+            Navigator.pushNamed(context, Login.routeName, arguments: title),
         child: Container(
           margin: EdgeInsets.only(top: 20),
           padding: EdgeInsets.all(20),
