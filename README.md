@@ -1,4 +1,3 @@
-# STEMuli
 
 A new Flutter project.
 
